@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="/assets/bootstrap/v5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome/v5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/assets/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar bg-primary">
+                <div class="container-fluid">
+                    <h2>List of customers</h2>
+        </header>
+
+        <div id= "modalCreate" class="modal-alert-danger"></div>
+        <form id="frmCreateCustomer" class="" method="post">
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <label for="fullNameCre" class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="fullNameCre" name="fullNameCre" />
+                </div>
+                <div class="col-lg-6">
+                    <label for="emailCre" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="emailCre" name="emailCre" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <label for="phoneCre" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phoneCre" name="phoneCre" />
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="addressCre" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="addressCre" name="addressCre" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnCreateCustomer">Create</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    </nav>
+
+    <!-- Modal Create -->
+
+    <div class="content">
+        <table id="tbCustomer" class="table table-hover">
+            <thead style="text-align: center">
+                <tr>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Balance</th>
+                    <th>Address</th>
+                    <th colspan="5">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal Update -->
+    <div id="modalUpdate" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal Update customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmUpdateCustomer" class="" method="post">
+                        <input type="hidden" id="customerIdUp">
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="fullNameUp" name="fullNameUp" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="emailUp" name="emailUp" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phoneUp" name="phoneUp" />
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" id="addressUp" name="addressUp" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdateCustomer">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal deposit -->
+    <div id="modalDeposit" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal deposit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmDeposit" class="" method="post">
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label for="idDep" class="form-label">Id</label>
+                                <input type="text" class="form-control" id="idDep" name="idDep" readonly />
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="fullNameDep" class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="fullNameDep" name="fullNameDep" readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="mb-3 col-lg-6">
+                                <label for="balanceDep" class="form-label">Balance</label>
+                                <input type="text" class="form-control" id="balanceDep" name="balanceDep" readonly />
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="transactionAmountDep" class="form-label">TransactionAmount</label>
+                                <input type="text" class="form-control" id="transactionAmountDep"
+                                    name="transactionAmountDep" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light" id="btnDeposit">Deposit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal withdraw -->
+    <div id="modalWithdraw" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal withdraw</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmWithdraw" class="" method="post">
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label for="idWithd" class="form-label">Id</label>
+                                <input type="text" class="form-control" id="idWithd" name="idWithd" readonly />
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="fullNameWithd" class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="fullNameWithd" name="fullNameWithd"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="mb-3 col-lg-6">
+                                <label for="balanceWithd" class="form-label">Balance</label>
+                                <input type="text" class="form-control" id="balanceWithd" name="balanceWithd"
+                                    readonly />
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="transactionAmountWithd" class="form-label">TransactionAmount</label>
+                                <input type="text" class="form-control" id="transactionAmountWithd"
+                                    name="transactionAmountWithd" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light" id="btnWithdraw">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Transfer -->
+    <div id="modalTransfer" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmTransfer" class="" method="post">
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label for="idSender" class="form-label">Sender ID</label>
+                                <input type="text" class="form-control" id="idSender" name="idSender" readonly />
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="fullNameSend" class="form-label">Sender Name</label>
+                                <input type="text" class="form-control" id="fullNameSend" name="fullNameSend"
+                                    readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <label for="emailSend" class="form-label">Sender Email</label>
+                                <input type="text" class="form-control" id="emailSend" name="emailSend" readonly />
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="balanceSend" class="form-label">Sender Balance</label>
+                                <input type="text" class="form-control" id="balanceSend" name="balanceSend" readonly />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="mb-3 col-lg-6">
+                                <label for="recipientId">Recipient Name</label>
+                                <select class="form-select" aria-label="Default select example" id="recipientId">
+                                    <option selected disabled value="0">Choose recipient customer:</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="transactionAmountWithd" class="form-label">TransactionAmount</label>
+                                <input type="text" class="form-control" id="transactionAmountWithd"
+                                    name="transactionAmountWithd" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light" id="btnWithdraw">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/assets/jquery/jquery-v3.6.0.min.js"></script>
+    <script src="/assets/jquery/jquery.validate.min.js"></script>
+    <script src="/assets/bootstrap/v5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/assets/js/appbase.js"></script>
+
+    <script>
+
+        const page = {
+            urls: {
+                getAllCustomers: AppBase.API_CUSTOMER,
+                findCustomerById: AppBase.DOMAIN_API + "/customers",
+                createCustomer: AppBase.API_CUSTOMER,
+                updateCustomerById: AppBase.API_CUSTOMER,
+                deleteCustomerById: AppBase.DOMAIN_API + "/customers",
+                doDeposit: AppBase.DOMAIN_API + '/deposits',
+                doWithdraw: AppBase.DOMAIN_API + '/withdraws'
+               
+            },
+            elements: {},
+            loadData: {},
+            commands: {},
+            dialogs: {
+                elements: {},
+                loadData: {},
+                commands: {}
+            }
+        }
+
+
+        let customers = [];
+        let currentCustomer = null;
+        let currentCustomerId;
+
+
+        let customer = new Customer();
+        let deposit = new Deposit();
+        let withdraw = new Withdraw();
+
+
+        page.elements.btnShowCreateModal = $('#btnShowCreateModal');
+
+
+        page.dialogs.elements.modalCreate = $('#modalCreate');
+        page.dialogs.elements.frmCreateCustomer = $('#frmCreateCustomer');
+        page.dialogs.elements.fullNameCre = $('#fullNameCre');
+        page.dialogs.elements.emailCre = $('#emailCre');
+        page.dialogs.elements.phoneCre = $('#phoneCre');
+
+        page.dialogs.elements.addressCre = $('#addressCre');
+        page.dialogs.elements.btnCreate = $('#btnCreateCustomer')
+
+        page.dialogs.elements.modalDeposit = $('#modalDeposit');
+        page.dialogs.elements.frmDeposit = $('#frmDeposit');
+        page.dialogs.elements.idDep = $('#idDep');
+        page.dialogs.elements.fullNameDep = $('#fullNameDep');
+        page.dialogs.elements.balanceDep = $('#balanceDep');
+        page.dialogs.elements.transactionAmountDep = $('#transactionAmountDep');
+        page.dialogs.elements.btnDeposit = $('#btnDeposit');
+
+        page.dialogs.elements.modalWithdraw = $('#modalWithdraw');
+        page.dialogs.elements.frmWithdraw = $('#frmWithdraw');
+        page.dialogs.elements.idWithd = $('#idWithd');
+        page.dialogs.elements.fullNameWithd = $('#fullNameWithd');
+        page.dialogs.elements.balanceWithd = $('#balanceWithd');
+        page.dialogs.elements.transactionAmountWithd = $('#transactionAmountWithd');
+        page.dialogs.elements.btnWithdraw = $('#btnWithdraw');
+
+
+        page.loadData.getAllCustomers = () => {
+            $.ajax({
+                type: "GET",
+                url: page.urls.getAllCustomers
+            })
+                .done((data) => {
+                    $.each(data, (i, item) => {
+                        customer = item;
+                        if (customer.deleted == 0) {
+                            let str = renderCustomer(customer);
+                            $('#tbCustomer tbody').prepend(str);
+                        }
+                    })
+                    addEventUpdateCustomer();
+                    page.dialogs.commands.addEventDeposit();
+                    page.dialogs.commands.addEventWithdraw();
+                    console.log("aaaaaaaaa");
+                    addEventDeleteCustomer();
+
+                })
+                .fail((error) => {
+                    console.error(error);
+                })
+        }
+
+
+        page.elements.btnShowCreateModal.on('click', () => {
+            page.dialogs.elements.modalCreate.modal('show');
+        })
+
+        page.loadData.findCustomerById = (id) => {
+            return $.ajax({
+                type: "GET",
+                url: page.urls.findCustomerById + '/' + id
+            })
+        }
+
+        let updateCustomerById = (obj) => {
+            customers.filter(item => {
+                if (item.id == obj.id) {
+                    item.fullName = obj.fullName;
+                    item.email = obj.email;
+                    item.phone = obj.phone;
+                    item.address = obj.address;
+                }
+            })
+        }
+
+        let addEventUpdateCustomer = () => {
+            $('.edit').on('click', function () {
+                let id = $(this).data('id');
+
+                page.loadData.findCustomerById(id).then((customer) => {
+                    currentCustomer = customer;
+
+                    $('#customerIdUp').val(customer.id);
+                    $('#fullNameUp').val(customer.fullName);
+                    $('#emailUp').val(customer.email);
+                    $('#phoneUp').val(customer.phone);
+                    $('#addressUp').val(customer.address);
+                    $('#modalUpdate').modal('show');
+
+
+
+                })
+                    .catch(() => {
+                        alert('Customer not found');
+                    });
+            })
+        }
+
+        let addEventDeleteCustomer = () => {
+            $('.delete').on('click', function () {
+
+                let id = $(this).data('id');
+
+                AppBase.SweetAlert.showDeleteConfirmDialog().then(result => {
+                    if (result.isConfirmed) {
+                        page.commands.checkCustomerById(id).then(() => {
+                            page.commands.deleteCustomer(id);
+                        })
+                            .catch(() => {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'Customer not found',
+                                })
+                            })
+                    }
+                })
+            })
+        }
+
+        page.dialogs.commands.addEventWithdraw = () => {
+            $('.withdraw').on('click', function () {
+                let customerId = $(this).data('id');
+                console.log(customerId);
+                page.loadData.findCustomerById(customerId).then((data) => {
+                    currentCustomer = data;
+
+                    page.dialogs.elements.idWithd.val(currentCustomer.id);
+                    page.dialogs.elements.fullNameWithd.val(currentCustomer.fullName);
+                    page.dialogs.elements.balanceWithd.val(currentCustomer.balance);
+
+                    page.dialogs.elements.modalWithdraw.modal('show');
+                })
+                    .catch((errors) => {
+                        let error = errors.responseJSON.message;
+                        AppBase.SweetAlert.showErrorAlert(error);
+                    })
+            })
+        }
+
+        page.dialogs.commands.addEventDeposit = () => {
+            $('.deposit').on('click', function () {
+
+                let customerId = $(this).data('id');
+
+                page.loadData.findCustomerById(customerId).then((data) => {
+                    currentCustomer = data;
+
+                    page.dialogs.elements.idDep.val(currentCustomer.id);
+                    page.dialogs.elements.fullNameDep.val(currentCustomer.fullName);
+                    page.dialogs.elements.balanceDep.val(currentCustomer.balance);
+
+                    page.dialogs.elements.modalDeposit.modal('show');
+                })
+                    .catch((errors) => {
+                        let error = errors.responseJSON.message;
+                        AppBase.SweetAlert.showErrorAlert(error);
+                    })
+            })
+        }
+
+        page.commands.checkCustomerById = (id) => {
+            return $.ajax({
+                type: 'PATCH',
+                url: page.urls.findCustomerById + '/' + id
+            })
+                .fail((error) => {
+                    console.log(error);
+                })
+        }
+
+        page.commands.deleteCustomer = (id) => {
+            $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: 'PATCH',
+                url: page.urls.deleteCustomerById + '/' + id,
+                data: JSON.stringify({ deleted: 1 })
+            })
+                .done(() => {
+
+                    $('#tr_' + id).remove();
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Customer has been deleted.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                })
+                .fail(() => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Failed to delete customer',
+                    })
+                })
+        }
+
+        let removeEventCreateCustomer = () => {
+            $('.edit').off('click');
+        }
+
+        let removeEventDeleteCustomer = () => {
+            $('.delete').off('click');
+        }
+        let removeEventDepositeCustomer = () => {
+            $('.deposit').off('click');
+        }
+        let removeEventWithdrawCustomer = () => {
+            $('.withdraw').off('click');
+        }
+
+
+        let doCreateCustomer = () => {
+
+            let fullName = page.dialogs.elements.fullNameCre.val();
+            let email = page.dialogs.elements.emailCre.val();
+            let phone = page.dialogs.elements.phoneCre.val();
+            let address = page.dialogs.elements.addressCre.val();
+            let balance = 0;
+            let deleted = 0;
+            customer.id = null;
+            customer.fullName = fullName;
+            customer.email = email;
+            customer.phone = phone;
+            customer.address = address;
+            customer.balance = balance;
+            customer.deleted = deleted;
+
+
+
+            $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: "POST",
+                url: page.urls.createCustomer,
+                data: JSON.stringify(customer)
+            })
+                .done((data) => {
+                    customer = data;
+
+                    let str = renderCustomer(customer);
+                    $('#tbCustomer tbody').prepend(str);
+
+
+                    removeEventCreateCustomer();
+                    addEventUpdateCustomer();
+                    removeEventDepositeCustomer();
+                    page.dialogs.commands.addEventDeposit();
+
+
+                    $('#modalCreate').modal('hide');
+
+                    AppBase.SweetAlert.showSuccessAlert('New customer is created successfully');
+                })
+                .fail((jqXHR) => {
+                    let errors = jqXHR.responseJSON;
+
+                    let str = '';
+                    $.each(errors, (k, v) => {
+                        str += `<label for="${k}Cre">${v}</label>`;
+                    })
+
+                    $('#modalCreate .modal-body .modal-alert-danger').append(str);
+                    $('#modalCreate .modal-body .modal-alert-danger').removeClass('hide').addClass('show');
+
+
+                })
+        }
+
+        $('#btnCreateCustomer').on('click' , () => {
+            $('#frmCreateCustomer').trigger('submit');
+        })
+
+
+        $('#btnUpdateCustomer').on('click', () => {
+            let id = currentCustomer.id;
+            let fullName = $('#fullNameUp').val();
+            let email = $('#emailUp').val();
+            let phone = $('#phoneUp').val();
+            let address = $('#addressUp').val();
+
+            currentCustomer.fullName = fullName;
+            currentCustomer.email = email;
+            currentCustomer.phone = phone;
+            currentCustomer.address = address;
+
+
+            $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: 'PATCH',
+                url: page.urls.updateCustomerById + '/' + id,
+                data: JSON.stringify(currentCustomer)
+            })
+                .done((data) => {
+                    currentCustomer = data;
+
+                    let newRow = renderCustomer(currentCustomer);
+                    let currentRow = $('#tr_' + id);
+
+                    currentRow.replaceWith(newRow);
+
+                    removeEventCreateCustomer();
+                    addEventUpdateCustomer();
+
+                    removeEventDepositeCustomer();
+                    page.dialogs.commands.addEventDeposit();
+
+                    $('#modalUpdate').modal('hide');
+                })
+                .fail((error) => {
+                    alert('Update customer failed');
+                })
+
+        })
+
+      
+
+        page.dialogs.commands.doWithdraw = () => {
+            let currentBalance = currentCustomer.balance;
+            let transactionAmountWithd = +page.dialogs.elements.transactionAmountWithd.val();
+            let newBalance = currentBalance - transactionAmountWithd;
+            currentCustomer.balance = newBalance;
+
+            withdraw.id = null;
+            withdraw.fullName = currentCustomer.fullName;
+            withdraw.transactionAmount = transactionAmountWithd;
+
+            page.dialogs.commands.createWithdraw().then((data) => {
+                page.dialogs.commands.incrementCustomerBalance(currentCustomer).then(() => {
+                    let id = currentCustomer.id;
+                    let newRow = renderCustomer(currentCustomer);
+                    let currentRow = $('#tr_' + id);
+
+                    currentRow.replaceWith(newRow);
+
+                    removeEventWithdrawCustomer();
+                    page.dialogs.commands.addEventWithdraw();
+
+                    addEventUpdateCustomer();
+                    page.dialogs.commands.addEventDeposit();
+                    $('#modalWithdraw').modal('hide');
+
+                    AppBase.SweetAlert.showSuccessAlert('Withdraw success');
+                })
+                    .catch(() => {
+                        AppBase.SweetAlert.showErrorAlert('Withdraw fail');
+                    });
+            })
+        }
+
+        page.dialogs.commands.doDeposit = () => {
+            let currentBalance = currentCustomer.balance;
+            let transactionAmountDep = +page.dialogs.elements.transactionAmountDep.val();
+            let newBalance = currentBalance + transactionAmountDep;
+            currentCustomer.balance = newBalance;
+
+            deposit.id = null;
+            deposit.fullName = currentCustomer.fullName;
+            deposit.transactionAmount = transactionAmountDep;
+
+
+            page.dialogs.commands.createDeposit().then((data) => {
+                page.dialogs.commands.incrementCustomerBalance(currentCustomer).then(() => {
+                    let id = currentCustomer.id;
+                    let newRow = renderCustomer(currentCustomer);
+                    let currentRow = $('#tr_' + id);
+
+                    currentRow.replaceWith(newRow);
+
+                    removeEventDepositeCustomer();
+                    page.dialogs.commands.addEventDeposit();
+                    addEventUpdateCustomer();
+                    page.dialogs.commands.addEventWithdraw();
+                    $('#modalDeposit').modal('hide');
+
+                    AppBase.SweetAlert.showSuccessAlert('Deposit success');
+                })
+
+                    .catch(() => {
+                        AppBase.SweetAlert.showErrorAlert('Deposit fail');
+                    });
+            })
+        }
+
+
+
+        page.dialogs.commands.createDeposit = () => {
+            return $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: 'POST',
+                url: page.urls.doDeposit,
+                data: JSON.stringify(deposit)
+            })
+                .done((data) => {
+                    deposit = data;
+                })
+        }
+
+        page.dialogs.commands.createWithdraw = () => {
+            return $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: 'POST',
+                url: page.urls.doWithdraw,
+                data: JSON.stringify(withdraw)
+            })
+                .done((data) => {
+                    withdraw = data;
+                })
+        }
+
+        page.dialogs.commands.incrementCustomerBalance = (customer) => {
+            return $.ajax({
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json'
+                },
+                type: 'PATCH',
+                url: page.urls.updateCustomerById + '/' + customer.id,
+                data: JSON.stringify(customer)
+            })
+        }
+
+
+
+        function renderCustomer(customer) {
+            return `
+                <tr id="tr_${customer.id}">
+                    <td>${customer.id}</td>
+                    <td>${customer.fullName}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.phone}</td>
+                    <td>${customer.balance}</td>
+                    <td>${customer.address}</td>
+                    <td>
+                    <button class="btn btn-secondary edit" data-id="${customer.id}">
+                        <i class="far fa-edit"></i>
+                        Update
+                    </button>
+                    </td>
+                    <td>
+                    <button class="btn btn-success deposit" data-id="${customer.id}">
+                        <i class="fas fa-plus"></i>
+                        Deposit
+                    </button>
+                </td>
+                    <td>
+                    <button class="btn btn-warning withdraw" data-id="${customer.id}">
+                        <i class="fas fa-minus"></i>
+                        Withdraw
+                    </button>
+                </td>
+                    <td>
+                    <button class="btn btn-primary transfer"  data-id="${customer.id}">
+                        <i class="fas fa-exchange-alt"></i>
+                        Transfer
+                    </button>
+                </td>
+                    <td>
+                    <button class="btn btn-danger delete" data-id="${customer.id}">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete
+                    </button>
+                </td>
+                </tr>
+            `;
+        }
+
+
+        $(".modal").on('hidden.bs.modal', () => {
+            $('.modal form').validate().resetForm();
+            $(".modal form").trigger("reset")
+            $('.modal .modal-alert-danger').empty().removeClass("show").addClass("hide");
+            $('.modal form').find("input.error").removeClass("error");
+        })
+
+
+        $('#frmCreateCustomer').validate({
+            rules: {
+                fullNameCre: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 20
+                },
+                emailCre: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 40
+                },
+                phoneCre: {
+                    required: true,
+                },
+                addressCre: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages: {
+                fullNameCre: {
+                    required: 'Full name is required',
+                    minlength: 'Min character of full name is ${0}',
+                    maxlength: 'Max character of full name is ${0}'
+                },
+                emailCre: {
+                    required: 'Email is required',
+                    minlength: 'Min character of email is ${0}',
+                    maxlength: 'Max character of email is ${0}'
+                },
+                phoneCre: {
+                    required: "Phone number is required."
+                },
+                addressCre: {
+                    required: "Address is required.",
+                    minlength: "Address must be more than 5 letters"
+                }
+            },
+            errorLabelContainer: "#modalCreate.modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#modalCreate.modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    $("#modalCreate.modal-alert-danger").removeClass("hide").addClass("show");
+                } else {
+                    $("#modalCreate.modal-alert-danger").removeClass("show").addClass("hide").empty();
+                    $("#frmCreateCustomer input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            submitHandler: function () {
+                doCreateCustomer();
+            }
+        });
+
+        $("#frmUpdateCustomer").validate({
+            rules: {
+                fullNameUp: {
+                    required: true,
+                    minlength: 4
+                },
+                emailUp: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 40
+
+                },
+                phoneUp: {
+                    required: true,
+                   
+                },
+                addressUp: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages: {
+                fullNameUp: {
+                    required: "Full name is required.",
+                    minlength: 'Min character of full name is ${0}',
+                    maxlength: 'Max character of full name is ${0}'
+                },
+                emailUp: {
+                    required: "Email is required.",
+                    minlength: 'Min character of email is ${0}',
+                    maxlength: 'Max character of email is ${0}'
+                },
+                phoneUp: {
+                    required: "Phone number is required."
+                },
+                addressUp: {
+                    required: "Address is required.",
+                    minlength: "Address must be more than 5 letters"
+                }
+            },
+            errorLabelContainer: "#modalUpdate .modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#modalUpdate .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    $("#modalUpdate .modal-alert-danger").removeClass("hidden").addClass("show");
+                } else {
+                    $("#modalUpdate .modal-alert-danger").removeClass("show").addClass("hidden").empty();
+                    $("#frmUpdateCustomer input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            submitHandler: () => {
+                updateCustomer();
+            }
+        });
+        page.dialogs.elements.frmDeposit.validate({
+            rules: {
+                transactionAmountDep: {
+                    required: true,
+                    number: true,
+                    min: 1000,
+                    max: 1000000
+                }
+            },
+            messages: {
+                transactionAmountDep: {
+                    required: 'Transaction amount is required',
+                    number: 'Transaction amount must be number',
+                    min: 'Transaction amount must be more than ${0}',
+                    max: 'Transaction amount must be less than ${0}'
+                }
+            },
+            errorLabelContainer: "#modalDeposit .modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#modalDeposit .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    $("#modalDeposit .modal-alert-danger").removeClass("hide").addClass("show");
+                } else {
+                    $("#modalDeposit .modal-alert-danger").removeClass("show").addClass("hide").empty();
+                    $("#frmDeposit input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            submitHandler: function () {
+                page.dialogs.commands.doDeposit();
+            }
+        });
+
+        function checkBiggerThanBalance() {
+            let transactionAmount = +$("#transactionAmountWithd").val(),
+                balanceWith = +$("#balanceWithd").val();
+            return transactionAmount <= balanceWith;
+        }
+
+        $.validator.addMethod("isBiggerThanBalance", function (value, element) {
+            return this.optional(element) || checkBiggerThanBalance();
+        }, "Withdraw amount must be less than your balance!");
+
+        page.dialogs.elements.frmWithdraw.validate({
+            rules: {
+                transactionAmountWithd: {
+                    required: true,
+                    number: true,
+                    min: 1000,
+                    max: 1000000,
+                    isBiggerThanBalance: true
+                }
+            },
+            messages: {
+                transactionAmountWithd: {
+                    required: 'Transaction amount is required',
+                    number: 'Transaction amount must be number',
+                    min: 'Transaction amount must be more than ${0}',
+                    max: 'Transaction amount must be less than ${0}'
+                }
+            },
+            errorLabelContainer: "#modalWithdraw .modal-alert-danger",
+            errorPlacement: function (error, element) {
+                error.appendTo("#modalWithdraw .modal-alert-danger");
+            },
+            showErrors: function (errorMap, errorList) {
+                if (this.numberOfInvalids() > 0) {
+                    $("#modalWithdraw .modal-alert-danger").removeClass("hide").addClass("show");
+                } else {
+                    $("#modalWithdraw .modal-alert-danger").removeClass("show").addClass("hide").empty();
+                    $("#frmWithdraw input.error").removeClass("error");
+                }
+                this.defaultShowErrors();
+            },
+            submitHandler: function () {
+                page.dialogs.commands.doWithdraw();
+            }
+        });
+
+
+        $(() => {
+            page.loadData.getAllCustomers();
+
+        })
+
+    </script>
+
+</body>
+
+</html>
