@@ -1,9 +1,24 @@
 class AppBase {
-    static DOMAIN_SERVER = "http://localhost:3310";
+
+    static DOMAIN_SERVER = 'http://localhost:3315';
 
     static DOMAIN_API = this.DOMAIN_SERVER + "";
 
     static API_CUSTOMER = this.DOMAIN_SERVER + "/customers";
+
+    static API_TRANSFER = this.API_SERVER + '/transfers';
+
+
+
+    static locationRegion = {
+        provinceId: '',
+        provinceName: '',
+        districtId: '',
+        districtName: '',
+        wardId: '',
+        wardName: '',
+        address: ''
+    }
 
     static SweetAlert = class {
         static showDeleteConfirmDialog() {
@@ -57,11 +72,12 @@ class AppBase {
 
 
 class Customer {
-    constructor(id, fullName, email, phone, balance, deleted) {
+    constructor(id, fullName, email, phone, locationRegion, balance, deleted) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
+        this.locationRegion = locationRegion;
         this.balance = balance;
         this.deleted = deleted;
     }
@@ -83,7 +99,7 @@ class Withdraw {
 }
 
 class Transfer {
-    constructor(idSender, idRecipient  , transactionAmount){
+    constructor(idSender, idRecipient, transactionAmount) {
         this.idSender = idSender;
         this.idRecipient = idRecipient;
         this.transactionAmount = transactionAmount
